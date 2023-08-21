@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image; 
 use Illuminate\Support\Str; 
 use Session;
-
+use Livewire\WithFileUploads;
 use Livewire\Component;
 
 class Users extends Component
@@ -30,10 +30,20 @@ class Users extends Component
 	public $name;
 	public $email;
 	public $password;
+    public $phone;
+    public $address;
+    public $image;
+    public $imageup;
+    public $expiry_date;
+    public $subscription_plan;
+    public $status;
+     
+
+
     public $u_id;
 
 	public $message = '';
-
+    use WithFileUploads;
     public function render()
     {	
     	$this->users = \DB::table('users')->get(); 
@@ -56,30 +66,52 @@ class Users extends Component
         $this->name = '';
         $this->email = '';
         $this->password = '';
+        $this->phone = '';
+        $this->address = '';
+        $this->image = '';
+        $this->new_img = '';
+        $this->expiry_date = '';
+        $this->subscription_plan = '';
+        $this->status = '';
     }
 
 
      protected $rules = [
         'name' => 'required',
         'email' => 'required|email',
-        'password' => 'required',
+        'password' => 'required|',
+        'phone' => 'required',
+        'address' => 'required',
+        //'image' => 'required',
+        'expiry_date' => 'required',
+        'subscription_plan' => 'required',
+        'status' => 'required',
+         
     ];
 
     public function submit_user(){
-
+ 
          $validatedData = $this->validate();
 
-            $data = [
+        $imageName = $this->image->store('photo','public');
+             
+
+            $this->image =  $imageName;
+
+              $data = [
 
                 'name' => $this->name,
                 'email' =>$this->email,
-                'password' => \Hash::make($this->password)
+                'password' => \Hash::make($this->password),
+                'phone' =>$this->phone,
+                'address' =>$this->address,
+                'image' =>$this->image,
+                'expiry_date' =>$this->expiry_date,
+                'subscription_plan' =>$this->subscription_plan,
+                'status' =>$this->status,
 
                     ];
 
-        if ($data['name'] ) {
-                
-         }
                  
          $user = User::insert($data);
          event(new Registered($user));
@@ -127,11 +159,17 @@ class Users extends Component
         $user = User::find($id);
 
         $this->u_id = $user->id;
-
-
+     
         $this->name = $user->name;
         $this->email = $user->email;
         $this->password = $user->password;
+        $this->phone = $user->phone;
+        $this->address = $user->address;
+        $this->image = $user->image;
+        $this->expiry_date = $user->expiry_date;
+        $this->subscription_plan = $user->subscription_plan;
+        $this->status = $user->status;
+          
         $this->update = true;
     }
 
@@ -141,25 +179,39 @@ class Users extends Component
 
          $validatedData = $this->validate();
 
-            $data = [
+          
+        $user = User::find($this->u_id);
+ 
 
-                'name' => $this->name,
-                'email' =>$this->email,
-                'password' => \Hash::make($this->password)
-
-                    ];
-
-        if ($data['name'] ) {
-                
-         }
-                 
-         $user = User::where('id',$this->u_id)->update($data);
-        
-         $this->resetData();       
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->password = \Hash::make($this->password);
+        $user->phone = $this->phone;
+        $user->address = $this->address;
+         if ($this->imageup){
+               
+               $imageName = $this->imageup->store('photo','public');
+                $user->image =$imageName;
+          }
+       
+        $user->expiry_date = $this->expiry_date;
+        $user->subscription_plan = $this->subscription_plan;
+        $user->status = $this->status;
+        $user->save();
+           
+           
+        $this->resetData();       
         $this->resetFields();
  
         return redirect('/admin/users')->with('message', 'User Update successfully');
   
+    }
+
+    public function back(){
+
+        $this->users = \DB::table('users')->get(); 
+        $this->alluser = true;
+        return redirect()->to('admin/users');
     }
 
     
