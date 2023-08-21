@@ -75,7 +75,7 @@ margin-top: 0;
                                         <a wire:click="updateUser({{ $user->id  }})" class="action-icon">
                                           <i class="mdi mdi-pencil"></i>
                                         </a>
-                                        <a   wire:click="deleteUser({{ $user->id  }})" class="action-icon"  onclick="return confirm('are you sure?')">
+                                        <a   wire:click="deleteUser({{ $user->id  }})" class="action-icon"  onclick="return confirm('are you sure To Delete this user!!')">
                                           <i class="mdi mdi-delete"></i>
                                         </a>
                                       </td> 
