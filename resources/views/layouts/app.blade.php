@@ -30,7 +30,8 @@
                 </header>
             @endif
 
-            <!-- Page Content -->
+            <a href="/users">User</a>
+    <a href="/ ">Home</a>
             <main>
                 {{ $slot }}
             </main>
@@ -38,6 +39,8 @@
 
 
         @livewireScripts
+
+        <script src="{{ asset('js/app.js') }}"></script>
 
     </body>
 </html>

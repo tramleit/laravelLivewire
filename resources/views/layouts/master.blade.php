@@ -449,9 +449,11 @@
             <!-- ========== Topbar End ========== -->
 
             <!-- ========== Left Sidebar Start ========== -->
+
             @include('layouts.sidebar');
 
-
+             
+    
 
        @yield('content')
 
@@ -1193,6 +1195,7 @@
          
         
         @livewireScripts
+        <script src="{{ asset('js/app.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     const Toast = Swal.mixin({
