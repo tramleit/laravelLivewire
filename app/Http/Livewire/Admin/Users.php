@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
-use Auth;
+namespace App\Http\Livewire\Admin;
+
+use Livewire\Component;
+
 use App\Models\User;
 use App\Slider;
 use App\Series;
@@ -18,11 +20,12 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str; 
 use Session;
 use Livewire\WithFileUploads;
-use Livewire\Component;
+use Auth;
+
 
 class Users extends Component
-{	
-	public $users=[];
+{   
+    public $users=[];
 	public $alluser =false;
 	public $adduser =false;
     public $update =false;
@@ -37,23 +40,19 @@ class Users extends Component
     public $expiry_date;
     public $subscription_plan;
     public $status;
-     
-
-
     public $u_id;
-
-	public $message = '';
+    public $message = '';
     use WithFileUploads;
+
     public function render()
-    {	
-    	$this->users = \DB::table('users')->get(); 
+    {   
+        $this->users = \DB::table('users')->get(); 
     	$this->alluser = true;
-        return view('livewire.users.users');
+        return view('livewire.admin.users.users');
+
     }
 
-  
     
-
     public function add_user()
     {	
     	$this->adduser = true;
@@ -65,7 +64,6 @@ class Users extends Component
 
         $this->name = '';
         $this->email = '';
-        $this->password = '';
         $this->phone = '';
         $this->address = '';
         $this->image = '';
@@ -79,7 +77,7 @@ class Users extends Component
      protected $rules = [
         'name' => 'required',
         'email' => 'required|email',
-        'password' => 'required|',
+        //'password' => 'required|',
         'phone' => 'required',
         'address' => 'required',
         //'image' => 'required',
@@ -157,12 +155,12 @@ class Users extends Component
     public function updateUser($id){
 
         $user = User::find($id);
-
+        
         $this->u_id = $user->id;
      
         $this->name = $user->name;
         $this->email = $user->email;
-        // $this->password = $user->password;
+        $this->password = $user->password;
         $this->phone = $user->phone;
         $this->address = $user->address;
         $this->image = $user->image;
@@ -213,6 +211,4 @@ class Users extends Component
         $this->alluser = true;
         return redirect()->to('admin/users');
     }
-
-    
 }

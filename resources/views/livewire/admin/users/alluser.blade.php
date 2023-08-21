@@ -20,7 +20,7 @@ margin-top: 0;
 <div class="page-title-box">
 <div class="page-title-right">
 
-<button wire:click="add_user()" class="btn btn-primary">Add User</button>
+<button  data-turbolinks="false" wire:click="add_user()" class="btn btn-primary">Add User</button>
 
 </div>
 <h4 class="page-title">Users Management</h4>
@@ -72,7 +72,7 @@ margin-top: 0;
                                       
                                       
                                        <td class="table-action">
-                                        <a wire:click="updateUser({{ $user->id  }})" class="action-icon">
+                                        <a  wire:click="updateUser({{ $user->id  }})" class="action-icon">
                                           <i class="mdi mdi-pencil"></i>
                                         </a>
                                         <a   wire:click="deleteUser({{ $user->id  }})" class="action-icon"  onclick="return confirm('are you sure To Delete this user!!')">

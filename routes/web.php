@@ -2,8 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+
+//// LiveWire Controller
+
+use App\Http\Livewire\Admin\Users;
+use App\Http\Livewire\Admin\Dashboard;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +23,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Livewire\Home::class);
-Route::get('/users', \App\Http\Livewire\Users::class);
+
+// use Spatie\Permission\Models\Role;
+// use Spatie\Permission\Models\Permission;
+// $role = Role::create(['name' => 'user']);
+
+Route::get('/', function(){
+
+    echo "Home Page";
+    
+});
 
 
 // Route::get('/', function () {
@@ -28,11 +43,11 @@ Route::get('/users', \App\Http\Livewire\Users::class);
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('admin/users', [UserController::class, 'index'])->name('dashboard');
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//     Route::get('admin/users', [UserController::class, 'index'])->name('dashboard');
   
-});
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,3 +56,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
+    Route::get('/dashboard',Dashboard::class)->name('dashboard');
+    Route::get('/users', Users::class )->name('dashboard');
+  
+});

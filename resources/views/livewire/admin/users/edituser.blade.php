@@ -16,7 +16,7 @@
                         <input type="hidden" name="user_id" value="{{ $u_id }}">
                         <div class="mb-3">
                            <label class="form-label" for="name">Name</label>
-                           <input type="text" class="form-control" id="name" placeholder="Enter name"  required wire:model="name">
+                           <input type="text" class="form-control"  id="name" placeholder="Enter name"  required wire:model="name">
                            <div style="color: red;">@error('name') {{ $message }} @enderror</div>
                         </div>
                         <div class="mb-3">
@@ -49,8 +49,10 @@
 
                          <div class="mb-3">
                            <label class="form-label" for="image">Image</label>
-                           <input type="file" class="form-control" id="image"  name="image"  required wire:model="imageup">
+                           <input type="file" class="form-control" id="image"  name="image"  required wire:model="imageup" style="border: 1px solid #ccc;  display: inline-block; padding: 6px 12px; cursor: pointer;">
+                           
                            <div style="color: red;">@error('image') {{ $message }} @enderror</div>
+                           
                         </div>
 
                          <div class="mb-3">
