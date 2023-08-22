@@ -67,7 +67,20 @@ margin-top: 0;
                                       <td>{{ $user->phone   }}</td>
                                       <td>{{ $user->address   }}</td>
                                       <td>{{ $user->expiry_date   }}</td>
-                                      <td>{{ $user->subscription_plan   }}</td>
+                                      <td> 
+                                          @if($user->subscription_plan == '1') Basic Plan
+
+                                          @elseif($user->subscription_plan == '2') 
+                                          Premium Plan
+
+                                          @elseif($user->subscription_plan == '3') 
+                                            Platinum Plan
+
+                                           @elseif($user->subscription_plan == '4') 
+                                           Free Plan
+
+                                         @endif
+                                      </td>
                                       <td>@if($user->status == '1') Active @else inactive @endif</td>
                                       
                                       
