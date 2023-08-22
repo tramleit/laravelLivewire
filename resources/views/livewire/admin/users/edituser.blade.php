@@ -69,12 +69,9 @@ margin-top: 0;
 
                          <div class="mb-3">
                            <label class="form-label" for="image">Image</label>
-<<<<<<< Updated upstream:resources/views/livewire/admin/users/edituser.blade.php
+ 
                            <input type="file" class="form-control" id="image"  name="image"  required wire:model="imageup" style="border: 1px solid #ccc;  display: inline-block; padding: 6px 12px; cursor: pointer;">
-                           
-=======
-                           <input type="file" class="form-control spcl" id="image"  name="image"  required wire:model="imageup" >
->>>>>>> Stashed changes:resources/views/livewire/users/edituser.blade.php
+                            
                            <div style="color: red;">@error('image') {{ $message }} @enderror</div>
                            
                         </div>

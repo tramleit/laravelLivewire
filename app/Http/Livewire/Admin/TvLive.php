@@ -36,6 +36,7 @@ class TvLive extends Component
     public $channel_url_2;
     public $channel_url_3;
     public $channel_thumb;
+    public $imageup;
     public $seo_title;
     public $seo_description;
     public $seo_keyword;
@@ -77,11 +78,12 @@ class TvLive extends Component
         $this->channel_url_1 = '';
         $this->channel_url_2 = '';
         $this->channel_url_3 = '';
-        $this->channel_thumb = '';
         $this->seo_title = '';
         $this->seo_description = '';
         $this->seo_keyword = '';
         $this->status = '';
+        $this->channel_slug  = '';
+        $this->channel_thumb  = '';
          
     }
 
@@ -95,7 +97,7 @@ class TvLive extends Component
         'channel_url_1' => 'required',
         'channel_url_2' => 'required',
         'channel_url_3' => 'required',
-        'channel_thumb' => 'required',
+        //'channel_thumb' => 'required',
         'seo_title' => 'required',
         'seo_description' => 'required',
         'seo_keyword' => 'required',
@@ -161,36 +163,43 @@ class TvLive extends Component
 
     public function mount()
     {   
-          $this->users = \DB::table('users')->get();
+          $this->tv_live = Tv_live::all(); 
     }
 
     public function deletetv_live($id){
 
-        $data = User::find($id);
+        $data = Tv_live::find($id);
         $data->delete();
         $this->mount();
         $this->dispatchBrowserEvent('alert', 
-       ['type' => 'success',  'message' => 'Delete user successfully!']);
+       ['type' => 'success',  'message' => 'Delete tv live successfully!']);
     }
 
 
     public function updatetv_live($id){
 
-        $user = User::find($id);
+            
+        $tv_live = tv_live::find($id);
         
-        $this->u_id = $user->id;
-     
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->password = $user->password;
-        $this->phone = $user->phone;
-        $this->address = $user->address;
-        $this->image = $user->image;
-        $this->expiry_date = $user->expiry_date;
-        $this->subscription_plan = $user->subscription_plan;
-        $this->status = $user->status;
-          
+        $this->u_id = $tv_live->id;
+      
+        $this->channel_access = $tv_live->channel_access;
+        $this->tv_category = $tv_live->channel_cat_id;
+        $this->channel_name = $tv_live->channel_name;
+        $this->channel_slug = $tv_live->channel_slug;
+        $this->description = $tv_live->channel_description;
+        $this->channel_thumb = $tv_live->channel_thumb;
+        $this->channel_url_type = $tv_live->channel_url_type;
+        $this->channel_url_1 = $tv_live->channel_url;
+        $this->channel_url_2 = $tv_live->channel_url2;
+        $this->channel_url_3 = $tv_live->channel_url3;
+        $this->seo_title = $tv_live->seo_title;
+        $this->seo_description = $tv_live->seo_description;
+        $this->seo_keyword = $tv_live->seo_keyword;
+        $this->status = $tv_live->status;
+ 
         $this->update_tvLive = true;
+         
     }
 
 
@@ -200,30 +209,40 @@ class TvLive extends Component
          $validatedData = $this->validate();
 
           
-        $user = User::find($this->u_id);
- 
-
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->password = \Hash::make($this->password);
-        $user->phone = $this->phone;
-        $user->address = $this->address;
+        $tv_live = tv_live::find($this->u_id);
+   
+     
+        $tv_live->channel_access = $this->channel_access ;
+        $tv_live->channel_cat_id = $this->tv_category;
+        $tv_live->channel_name = $this->channel_name;
+        $tv_live->channel_slug = $this->channel_slug;
+        $tv_live->channel_description = $this->description;
          if ($this->imageup){
                
-               $imageName = $this->imageup->store('photo','public');
-                $user->image =$imageName;
+               $imageName = $this->imageup->store('liveTv','public');
+
+               $tv_live->channel_thumb = $imageName;
+              
           }
-       
-        $user->expiry_date = $this->expiry_date;
-        $user->subscription_plan = $this->subscription_plan;
-        $user->status = $this->status;
-        $user->save();
+
+        
+        $tv_live->channel_url_type = $this->channel_url_type;
+        $tv_live->channel_url = $this->channel_url_1;
+        $tv_live->channel_url2 = $this->channel_url_2;
+        $tv_live->channel_url3 = $this->channel_url_3;
+        $tv_live->seo_title = $this->seo_title;
+        $tv_live->seo_description = $this->seo_description;
+        $tv_live->seo_keyword = $this->seo_keyword;
+        $tv_live->status = $this->status;
+        
+        $tv_live->save();
            
            
         $this->resetData();       
         $this->resetFields();
  
-        return redirect('/admin/users')->with('message', 'User Update successfully');
+        
+        return redirect('admin/live_tv')->with('message', 'Live Tv Update successfully');
   
     }
 

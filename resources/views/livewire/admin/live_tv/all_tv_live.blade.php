@@ -53,26 +53,28 @@ margin-top: 0;
                               
 
                                 @foreach ($tv_live as $tv)
+                                  
                                    
                                        
                                     <tr>
                                       <td class="table-user">
                                          
-                                        {{-- {{ $tv->channel_name   }} --}}
+                                        {{ $tv->channel_name   }}
                                       </td>
-                               {{--        <td>{{ $tv->channel_thumb   }}</td>
-                                      <td>{{ $tv->channel_access   }}</td> --}}
-                                      {{-- <td>@if($tv->status == '1') Active @else inactive @endif</td> --}}
+                                     
+                                      <td>  <img width="50" height="50" src="{{Storage::url($tv->channel_thumb)}}"   class="me-2 rounded-circle" /> </td>
+                                       <td>{{ $tv->channel_access   }}</td>
+                                      <td>@if($tv->status == '1') Active @else inactive @endif</td>
                                       
                                       
-                                       {{-- <td class="table-action">
-                                        <a  wire:click="updateUser({{ $tv->id  }})" class="action-icon">
+                                       <td class="table-action">
+                                        <a  wire:click="updatetv_live({{ $tv->id  }})" class="action-icon">
                                           <i class="mdi mdi-pencil"></i>
                                         </a>
-                                        <a   wire:click="deleteUser({{ $tv->id  }})" class="action-icon"  onclick="return confirm('are you sure To Delete this user!!')">
+                                        <a   wire:click="deletetv_live({{ $tv->id  }})" class="action-icon"  onclick="return confirm('are you sure To Delete this Live TV!!')">
                                           <i class="mdi mdi-delete"></i>
                                         </a>
-                                      </td> --}} 
+                                      </td> 
                                     </tr>
 
                                 @endforeach

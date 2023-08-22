@@ -2,18 +2,27 @@
 <div class="row">
    <div class="col-12">
       <div class="page-title-box">
-         <div class="page-title-right">
-            <a wire:click="back()" style="margin-right: 34px;"  class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11H9.41l3.3-3.29a1 1 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33a1 1 0 0 0 0 .76a1 1 0 0 0 .21.33l5 5a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> Back</a>
+
+          <div class="row">
+            <div class="col-6">
+               <h4 class="page-title">Add Live Tv</h4>
+            </div>
+            <div class="col-6">
+               <div class="page-title-right">
+            <a wire:click="back()" style="margin-right: 34px;"  class="btn btn-primary">  Back</a>
 
          </div>
-         <h4 class="page-title">Add Live Tv</h4>
+            </div>
+          </div>
+        
+        
          <div class="container">
             <div class="col-md-12">
                <div class="card">
                   <div class="card-header">
                      <div class="row">
-                        <div class="col-6"><h4>Live TV Info</h4></div>
-                        <div class="col-6"><h4>Thumb & URL</h4></div>
+                        <div class="col-6"><h3 style="font-size: 20px;font-weight: 500;">Live TV Info</h3></div>
+                        <div class="col-6"><h3 style="font-size: 20px;font-weight: 500;">Thumb & URL</h3></div>
                      </div>
                      
                      
@@ -128,14 +137,15 @@
 
                          <div class="mb-3">
                             <label class="form-label" for="channel_thumb">TV Logo* <small>(Recommended resolution : 650x350)</small></label>
-                           <input type="file" class="form-control" id="channel_thumb"   name="channel_thumb" required wire:model="channel_thumb" autocomplete="off">
+                           <input type="file" class="form-control" id="channel_thumb"   name="channel_thumb" required wire:model="channel_thumb" autocomplete="off" style="border: 1px solid #ccc;  display: inline-block; padding: 6px 12px; cursor: pointer;">
                            <div style="color: red;">@error('channel_thumb') {{ $message }} @enderror</div>
  
                         </div>
 
 
-                        <div class="row">
-                        <div class="col-12"><h4>SEO</h4></div>
+                        <div class="row mt-2 mb-2">
+
+                        <div class="col-12 mt-2 mb-2" style="font-size: 20px;font-weight: 500;"><h3>SEO Settings</h3></div>
                       
                         </div>
 

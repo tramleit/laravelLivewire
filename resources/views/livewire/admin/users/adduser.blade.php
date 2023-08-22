@@ -3,7 +3,7 @@
    <div class="col-12">
       <div class="page-title-box">
          <div class="page-title-right">
-            <a wire:click="back()" style="margin-right: 34px;"  class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11H9.41l3.3-3.29a1 1 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33a1 1 0 0 0 0 .76a1 1 0 0 0 .21.33l5 5a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> Back</a>
+            <a wire:click="back()" style="margin-right: 34px;"  class="btn btn-primary">  Back</a>
 
          </div>
          <h4 class="page-title">Add Users</h4>
