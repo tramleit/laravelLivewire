@@ -67,6 +67,31 @@
     @include('layouts.partials.footer')
        
     @livewireScripts
+     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timer: 5000,
+        timerProgressBar:true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    window.addEventListener('alert',({detail:{type,message}})=>{
+        Toast.fire({
+            icon:type,
+            title:message
+        })
+    })
+
+    
+</script>
            
 </body>
 </html>

@@ -5,12 +5,6 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 
 use App\Models\User;
-use App\Slider;
-use App\Series;
-use App\Movies;
-use App\HomeSection;
-use App\SubscriptionPlan;
-use App\Transactions; 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Requests;

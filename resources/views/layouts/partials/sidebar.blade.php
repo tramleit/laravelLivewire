@@ -1,4 +1,13 @@
 <!-- ========== Left Sidebar Start ========== -->
+<style>
+    .add{
+        display:block;
+
+    }
+    .remove{
+        display:none;
+    }
+</style>
 <div class="leftside-menu">
 
     <!-- Brand Logo Light -->
@@ -54,10 +63,68 @@
 
             <li class="side-nav-item">
                 <a href="{{ url('/admin/users') }}" class="side-nav-link">
-                    <i class="uil-layer-group"></i>
+                    <i class="uil-user"></i>
                     <span> User </span>
                 </a>
             </li>
+
+
+           {{--   <li class="side-nav-item">
+                <a href="{{ url('/admin/live_tv') }}" class="side-nav-link">
+                    <i class="uil-layer-group"></i>
+                    <span>  TV Channel </span>
+                </a>
+            </li> --}}
+
+ 
+
+                 <li class="side-nav-item">
+
+                    <div x-data="{ open: false }" class="side-nav-item">
+                    <a @click="open = true"  class="side-nav-link">
+                        <i class="uil-envelope"></i>
+                                <span>  TV Channel </span>
+                                <span class="menu-arrow"></span>
+                    </a>
+
+                    
+                    <div class="collapses " id="sidebarEmail">
+                        
+                 <ul x-show="open" @click.outside="open = false" class="side-nav-second-level">
+                    <li><a href="{{ url('/admin/live_tv') }}">TV Channel</a></li>
+                    <li><a href="{{ url('/admin/tv_category') }}">TV Category</a></li>
+                    </ul>
+                    </div>
+
+                    
+                    </div>
+
+                </li>
+
+
+ 
+
+          {{--   <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link collapsed">
+                    <i class="uil-store"></i>
+                    <span> Live Tv </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarEcommerce" style="">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="apps-ecommerce-products.html">TV Category</a>
+                        </li>
+                        <li>
+                            <a href="apps-ecommerce-products-details.html">TV Channel</a>
+                        </li>
+                         
+                    </ul>
+                </div>
+            </li> --}}
+
+
+ 
 
         </ul>
         <!--- End Sidemenu -->

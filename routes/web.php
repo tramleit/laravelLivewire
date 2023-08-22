@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\Users;
 use App\Http\Livewire\Admin\Dashboard;
+use App\Http\Livewire\Admin\TvLive;
+use App\Http\Livewire\Admin\LiveTvCategory;
 
 
 
@@ -62,5 +64,8 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/dashboard',Dashboard::class)->name('dashboard');
     Route::get('/users', Users::class )->name('dashboard');
+    Route::get('/live_tv', TvLive::class )->name('live_tv');
+    Route::get('/tv_category', LiveTvCategory::class )->name('tv_category');
+     
   
 });
